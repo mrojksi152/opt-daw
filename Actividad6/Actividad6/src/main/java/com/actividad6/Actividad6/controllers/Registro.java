@@ -1,5 +1,6 @@
 package com.actividad6.Actividad6.controllers;
 
+import com.actividad6.Actividad6.model.Login;
 import com.actividad6.Actividad6.model.Usuario;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -39,7 +40,7 @@ public class Registro {
 
         if(usuario.getContrasena().isEmpty()) {
             Random rand = new Random();
-            usuario.setContrasena(String.valueOf(rand.nextInt(999999)));
+            usuario.setContrasena(String.valueOf(rand.nextInt(1000000)));
         }
 
         String contrasena = usuario.getContrasena();
@@ -50,5 +51,25 @@ public class Registro {
 
 
         return "Correo: " + usuario.getCorreo() + " Contraseña: " + usuario.getContrasena();
+    }
+
+    @GetMapping("/login")
+    public String mostrarLogin() {
+        return "login";
+    }
+
+    @PostMapping("/login")
+    @ResponseBody
+    public String realizarLogin(@ModelAttribute Login login) {
+
+        if(!map.containsKey(login.getUsuario())) {
+            return "Usuario no existente";
+        }else {
+            if(map.get(login.getUsuario()).equals(login.getContrasena())) {
+                return "Login exitoso";
+            } else {
+                return "Contraseña incorrecta";
+            }
+        }
     }
 }
