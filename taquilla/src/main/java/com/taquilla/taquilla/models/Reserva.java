@@ -1,0 +1,58 @@
+package com.taquilla.taquilla.models;
+
+public class Reserva {
+
+    public Integer eventoId;
+    public String nombreCliente;
+    public String tipoEntrada;
+    public Integer cantidad;
+    public String codigoCupon;
+
+    public Reserva(Integer eventoId, String nombreCliente, String tipoEntrada, Integer cantidad, String codigoCupon) {
+        this.eventoId = eventoId;
+        this.nombreCliente = nombreCliente;
+        this.tipoEntrada = tipoEntrada;
+        this.cantidad = 0;
+        this.codigoCupon = codigoCupon;
+    }
+
+    public Integer getEventoId() {
+        return eventoId;
+    }
+
+    public void setEventoId(Integer eventoId) {
+        this.eventoId = eventoId;
+    }
+
+    public String getNombreCliente() {
+        return nombreCliente;
+    }
+
+    public void setNombreCliente(String nombreCliente) {
+        this.nombreCliente = nombreCliente;
+    }
+
+    public String getTipoEntrada() {
+        return tipoEntrada;
+    }
+
+    public void setTipoEntrada(String tipoEntrada) {
+        this.tipoEntrada = tipoEntrada;
+    }
+
+    public Integer getCantidad() {
+        return cantidad;
+    }
+
+    public void setCantidad(Integer cantidad) {
+        this.cantidad = cantidad;
+    }
+
+    public String getCodigoCupon() {
+        return codigoCupon;
+    }
+
+    public void setCodigoCupon(String codigoCupon) {
+        this.codigoCupon = codigoCupon;
+    }
+}
