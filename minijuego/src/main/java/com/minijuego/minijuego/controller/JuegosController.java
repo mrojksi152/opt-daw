@@ -62,4 +62,56 @@ public class JuegosController {
             return "Tiradas: " + dados + " Suma: " + suma;
         }
     }
+
+    @GetMapping("/moneda")
+    public String caraCruz(@RequestParam(name = "lanzamientos") Integer lanzamientos) {
+
+        lanzamientos = Integer.parseInt(String.valueOf(lanzamientos));
+
+        if(lanzamientos < 1 || lanzamientos > 100) {
+            return "Los lanzamientos tienen que estar entre 1 y 100";
+        }
+
+        System.out.println("-----------------------------------------");
+        Random rand = new Random();
+        int cara = 0;
+        int cruz = 0;
+        int racha = 1;
+        int moneda = rand.nextInt(2);
+        System.out.println(moneda);
+        int maxRacha = 1;
+        int temp = moneda;
+
+        if(moneda == 0) {
+            cara++;
+        } else {
+            cruz++;
+        }
+
+        for(int i=0; i<lanzamientos-1; i++) {
+
+            temp = moneda;
+            moneda = rand.nextInt(2);
+            System.out.println(moneda);
+            if(moneda == 0) {
+                cara++;
+            } else {
+                cruz++;
+            }
+
+            if(temp != moneda) {
+                racha = 0;
+                racha++;
+            } else {
+                racha++;
+            }
+
+            if(racha > maxRacha) {
+                System.out.println("Racha: " + racha);
+                maxRacha = racha;
+            }
+        }
+
+        return "Caras: " + cara + " | Cruz: " + cruz + " | Mayor racha: " + maxRacha;
+    }
 }
